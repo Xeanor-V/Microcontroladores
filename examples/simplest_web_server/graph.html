@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html>
+<head> 
+<meta charset="UTF-8">
+<script type="text/javascript" src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+<script type="text/javascript">
+window.onload = function () {
+var dataPoints = [];
+	var chart = new CanvasJS.Chart("chartContainer", {
+			title : {
+				text : "Proyecto final - Microcontroladores"
+			},
+			data : [{
+					type : "spline",
+					dataPoints : dataPoints
+				}
+			]
+		});
+	chart.render();
+
+
+var updateChart = function () {
+	
+	var newPoints = [];
+	$.getJSON("Corazon.json", function(data) {  
+	$.each(data, function(key, value){
+		newPoints.push({y: value});
+		console.log(value)
+	});
+		chart.options.data[0].dataPoints  = newPoints;
+		chart.render();
+	});
+	};
+
+setInterval(function(){updateChart()}, 1000);
+}
+
+</script>
+</head>
+<body>
+<div id="chartContainer" style="height: 300px; width: 100%;"></div>
+</body>
+</html>
+
+

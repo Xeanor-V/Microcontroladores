@@ -1,0 +1,3 @@
+g++ simplest_web_server.c ../../mongoose.c -o simplest_web_server -g -W -Wall -Werror -I../.. -Wno-unused-function  -DMG_DISABLE_DAV_AUTH -DMG_ENABLE_FAKE_DAVLOCK -pthread -std=c++11
+
+g++ Client.cpp -pthread -std=c++11 -o Cliente.out
